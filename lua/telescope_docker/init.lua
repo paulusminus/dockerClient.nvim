@@ -2,7 +2,8 @@ local pickers = require("telescope.pickers")
 local config = require("telescope.config").values
 local finders = require("telescope.finders")
 local previewers = require("telescope.previewers")
-local docker = require("lua.docker")
+local utils = require("telescope.previewers.utils")
+local docker = require("telescope_docker.docker")
 
 local telescope_docker = {}
 
@@ -17,6 +18,7 @@ function telescope_docker.show_docker_images(opts)
 					title = docker.preview_title,
 					define_preview = function(self, entry)
 						vim.api.nvim_buf_set_lines(self.state.bufnr, 0, 0, true, docker.preview_lines(entry))
+						utils.highlighter(self.state.bufnr, "markdown", {})
 					end,
 				}),
 			}),

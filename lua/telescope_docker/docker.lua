@@ -24,9 +24,14 @@ end
 docker.preview_title = "Docker Image Details"
 
 function docker.preview_lines(entry)
-	local lines = vim.split(vim.inspect(entry.value), "\n")
-	table.insert(lines, "Everyone")
-	table.insert(lines, "Hello")
+	local image = entry.value
+	local lines = {
+		"| --- | --- |",
+		"| Id | " .. image.ID .. " |",
+		"| Repository | " .. image.Repository .. " |",
+		"| Tag | " .. image.Tag .. " |",
+		"| Size | " .. image.Size .. " |",
+	}
 	return lines
 end
 
