@@ -1,5 +1,21 @@
 local plenary = require("plenary")
+local previewers = require("telescope.previewers")
+local utils = require("telescope.previewers.utils")
+
 local list = { "docker", "image", "ls", "--format", "json" }
+local preview_title = "Docker Image Details"
+
+local function preview_content(entry)
+	local image = entry.value
+	local lines = {
+		"# " .. image.ID,
+		"",
+		"Repository: *" .. image.Repository .. "*",
+		"Tag: *" .. image.Tag .. "*",
+		"Size: *" .. image.Size .. "*",
+	}
+	return lines
+end
 
 local M = {}
 
@@ -18,18 +34,12 @@ M.entry_maker = function(entry)
 	end
 end
 
-M.preview_title = "Docker Image Details"
-
-M.preview_lines = function(entry)
-	local image = entry.value
-	local lines = {
-		"# " .. image.ID,
-		"",
-		"Repository: *" .. image.Repository .. "*",
-		"Tag: *" .. image.Tag .. "*",
-		"Size: *" .. image.Size .. "*",
-	}
-	return lines
-end
+M.previewer = previewers.new_buffer_previewer({
+	title = preview_title,
+	define_preview = function(self, entry)
+		vim.api.nvim_buf_set_lines(self.state.bufnr, 0, 0, true, preview_content(entry))
+		utils.highlighter(self.state.bufnr, "markdown", {})
+	end,
+})
 
 return M
