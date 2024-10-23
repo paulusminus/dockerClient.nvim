@@ -4,9 +4,6 @@ local finders = require("telescope.finders")
 local previewers = require("telescope.previewers")
 local utils = require("telescope.previewers.utils")
 local docker = require("telescope_docker.docker")
-local plenary = require("plenary")
-local log = require("plenary.log"):new()
-log.level = "debug"
 
 local M = {}
 
@@ -21,7 +18,6 @@ M.select_s = function(opts)
 					{ name = "Perhaps", values = { 2, 3 } },
 				},
 				entry_maker = function(entry)
-					log.debug(entry)
 					return {
 						value = entry,
 						display = entry.name,

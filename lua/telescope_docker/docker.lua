@@ -1,5 +1,3 @@
--- local logger = require("plenary.log"):new()
--- logger.level = "debug"
 local plenary = require("plenary")
 local list = { "docker", "image", "ls", "--format", "json" }
 
@@ -11,7 +9,6 @@ end
 
 M.entry_maker = function(entry)
 	local parsed = vim.json.decode(entry)
-	-- logger.debug(parsed)
 	if parsed then
 		return {
 			value = parsed,
