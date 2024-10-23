@@ -1,13 +1,15 @@
 -- local logger = require("plenary.log"):new()
 -- logger.level = "debug"
+local plenary = require("plenary")
+local list = { "docker", "image", "ls", "--format", "json" }
 
-local docker = {}
+local M = {}
 
-function docker.list()
-	return { "docker", "image", "ls", "--format", "json" }
+M.list_fn = function()
+	return plenary.job:new(list):sync()
 end
 
-function docker.entry_maker(entry)
+M.entry_maker = function(entry)
 	local parsed = vim.json.decode(entry)
 	-- logger.debug(parsed)
 	if parsed then
@@ -16,23 +18,21 @@ function docker.entry_maker(entry)
 			display = parsed.Repository,
 			ordinal = parsed.Repository,
 		}
-	else
-		return {}
 	end
 end
 
-docker.preview_title = "Docker Image Details"
+M.preview_title = "Docker Image Details"
 
-function docker.preview_lines(entry)
+M.preview_lines = function(entry)
 	local image = entry.value
 	local lines = {
-		"| --- | --- |",
-		"| Id | " .. image.ID .. " |",
-		"| Repository | " .. image.Repository .. " |",
-		"| Tag | " .. image.Tag .. " |",
-		"| Size | " .. image.Size .. " |",
+		"# " .. image.ID,
+		"",
+		"Repository: *" .. image.Repository .. "*",
+		"Tag: *" .. image.Tag .. "*",
+		"Size: *" .. image.Size .. "*",
 	}
 	return lines
 end
 
-return docker
+return M
