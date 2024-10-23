@@ -2,7 +2,7 @@ local plenary = require("plenary")
 local previewers = require("telescope.previewers")
 local utils = require("telescope.previewers.utils")
 
-local list = { "docker", "image", "ls", "--format", "json" }
+local list_images_command = { "docker", "image", "ls", "--format", "json" }
 local preview_title = "Docker Image Details"
 
 local function preview_content(entry)
@@ -20,7 +20,7 @@ end
 local M = {}
 
 M.list_fn = function()
-	return plenary.job:new(list):sync()
+	return plenary.job:new(list_images_command):sync()
 end
 
 M.entry_maker = function(entry)
