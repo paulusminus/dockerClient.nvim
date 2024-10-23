@@ -1,5 +1,5 @@
-local logger = require("plenary.log"):new()
-logger.level = "debug"
+-- local logger = require("plenary.log"):new()
+-- logger.level = "debug"
 
 local docker = {}
 
@@ -9,7 +9,7 @@ end
 
 function docker.entry_maker(entry)
 	local parsed = vim.json.decode(entry)
-	logger.debug(parsed)
+	-- logger.debug(parsed)
 	if parsed then
 		return {
 			value = parsed,
