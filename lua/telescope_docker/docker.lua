@@ -8,11 +8,12 @@ local preview_title = "Docker Image Details"
 local function preview_content(entry)
 	local image = entry.value
 	local lines = {
-		"# " .. image.ID,
-		"",
-		"Repository: *" .. image.Repository .. "*",
-		"Tag: *" .. image.Tag .. "*",
-		"Size: *" .. image.Size .. "*",
+		"```bash",
+		'ID = "' .. image.ID .. '"',
+		'Repository = "' .. image.Repository .. '"',
+		'Tag = "' .. image.Tag .. '"',
+		'Size = "' .. image.Size .. '"',
+		"```",
 	}
 	return lines
 end
