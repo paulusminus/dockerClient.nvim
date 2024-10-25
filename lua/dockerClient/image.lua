@@ -1,3 +1,4 @@
+local actions = require("telescope.actions")
 local actions_state = require("telescope.actions.state")
 local plenary = require("plenary")
 local previewers = require("telescope.previewers")
