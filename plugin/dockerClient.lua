@@ -3,5 +3,9 @@ if 1 ~= vim.fn.has("nvim-0.9.0") then
 	return
 end
 
-vim.api.nvim_create_user_command("CargoDocTest", require("dockerClient").run_cargo_doctest(), {})
-vim.api.nvim_create_user_command("DockerRunSelectedImage", require("dockerClient").select_docker_image(), {})
+vim.api.nvim_create_user_command("CargoDocTest", function()
+	require("dockerClient").run_cargo_doctest()
+end, {})
+vim.api.nvim_create_user_command("DockerRunSelectedImage", function()
+	require("dockerClient").select_docker_image()
+end, {})
