@@ -37,7 +37,7 @@ M.entry_maker = function(entry)
 end
 
 M.previewer = function(preview_title)
-	previewers.new_buffer_previewer({
+	return previewers.new_buffer_previewer({
 		title = preview_title,
 		define_preview = function(self, entry)
 			vim.api.nvim_buf_set_lines(self.state.bufnr, 0, 0, true, preview_content(entry))
