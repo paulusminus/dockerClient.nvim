@@ -5,4 +5,3 @@
 :Telescope
 A Neovim Lua Plugin used for listing items and
 performing an action on a selected items
-

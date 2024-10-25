@@ -1,3 +1,5 @@
+local actions = require("telescope.actions")
+local actions_state = require("telescope.actions.state")
 local plenary = require("plenary")
 local previewers = require("telescope.previewers")
 local utils = require("telescope.previewers.utils")
@@ -42,5 +44,23 @@ M.previewer = previewers.new_buffer_previewer({
 		utils.highlighter(self.state.bufnr, "markdown", {})
 	end,
 })
+
+M.action = function(prompt_bufnr)
+	actions.select_default:replace(function()
+		actions.close(prompt_bufnr)
+		local selection = actions_state.get_selected_entry()
+		local command = {
+			"edit",
+			"term://docker",
+			"run",
+			"-it",
+			selection.value.Repository,
+		}
+		local docker_command = vim.fn.join(command, " ")
+		vim.cmd(docker_command)
+	end)
+
+	return true
+end
 
 return M
