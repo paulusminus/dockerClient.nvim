@@ -5,7 +5,6 @@ local previewers = require("telescope.previewers")
 local utils = require("telescope.previewers.utils")
 
 local list_images_command = { "docker", "image", "ls", "--format", "json" }
-local preview_title = "Docker Image Details"
 
 local function preview_content(entry)
 	local image = entry.value
@@ -37,13 +36,15 @@ M.entry_maker = function(entry)
 	end
 end
 
-M.previewer = previewers.new_buffer_previewer({
-	title = preview_title,
-	define_preview = function(self, entry)
-		vim.api.nvim_buf_set_lines(self.state.bufnr, 0, 0, true, preview_content(entry))
-		utils.highlighter(self.state.bufnr, "markdown", {})
-	end,
-})
+M.previewer = function(preview_title)
+	previewers.new_buffer_previewer({
+		title = preview_title,
+		define_preview = function(self, entry)
+			vim.api.nvim_buf_set_lines(self.state.bufnr, 0, 0, true, preview_content(entry))
+			utils.highlighter(self.state.bufnr, "markdown", {})
+		end,
+	})
+end
 
 M.action = function(prompt_bufnr)
 	actions.select_default:replace(function()

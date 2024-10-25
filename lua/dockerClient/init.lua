@@ -5,6 +5,10 @@ local pickers = require("telescope.pickers")
 local log = require("plenary.log"):new()
 log.level = "debug"
 
+local options = {
+	preview_title = "Docker Image Details",
+}
+
 local M = {}
 
 M.select_docker_image = function(opts)
@@ -15,7 +19,7 @@ M.select_docker_image = function(opts)
 				entry_maker = image.entry_maker,
 			}),
 			sorter = config.generic_sorter(opts),
-			previewer = image.previewer,
+			previewer = image.previewer(options.preview_title),
 			attach_mappings = image.action,
 		})
 		:find()
@@ -31,6 +35,10 @@ M.run_cargo_doctest = function()
 			.. completed.stderr
 		log.debug(lines)
 	end)
+end
+
+M.setup = function(opts)
+	options = opts
 end
 
 return M
