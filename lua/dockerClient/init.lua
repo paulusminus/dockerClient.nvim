@@ -29,16 +29,18 @@ M.run_cargo_doctest = function()
 	vim.system({ "cargo", "test", "--doc" }, {}, function(completed)
 		local lines = "Exit code: "
 			.. completed.code
-			.. "\nStdout: "
+			.. "\n\nStdout: "
 			.. completed.stdout
-			.. "\nStderr: "
+			.. "\n\nStderr: "
 			.. completed.stderr
 		log.debug(lines)
 	end)
 end
 
 M.setup = function(opts)
-	options = opts
+	for k, v in pairs(opts) do
+		options[k] = v
+	end
 end
 
 return M
