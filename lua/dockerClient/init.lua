@@ -7,6 +7,7 @@ log.level = "debug"
 
 local options = {
 	preview_title = "Docker Image Details",
+	prompt_title = "Select image",
 }
 
 local M = {}
@@ -14,6 +15,7 @@ local M = {}
 M.select_docker_image = function(opts)
 	pickers
 		.new(opts, {
+			prompt_title = options.prompt_title,
 			finder = finders.new_dynamic({
 				fn = image.list_fn,
 				entry_maker = image.entry_maker,
