@@ -1,7 +1,7 @@
-# telescope-docker
+# dockerClient
 
-## telescope-docker is a Neovim Lua Plugin that enables listing docker images
+## dockerClient is a Neovim Lua Plugin that enables listing docker images
 
-:Telescope
-A Neovim Lua Plugin used for listing items and
-performing an action on a selected items
+:DockerRunSelectedImage
+A Neovim Lua Plugin used for listing docker images and
+running the selected image
