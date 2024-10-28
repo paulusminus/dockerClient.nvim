@@ -5,6 +5,12 @@ local pickers = require("telescope.pickers")
 local log = require("plenary.log"):new()
 log.level = "debug"
 
+local cargo_run_release = {
+	"cargo",
+	"run",
+	"--release",
+}
+
 local options = {
 	preview_title = "Docker Image Details",
 	prompt_title = "Select image",
@@ -27,7 +33,14 @@ M.select_docker_image = function(opts)
 		:find()
 end
 
-M.run_cargo_doctest = function()
+M.cargo_run_release = function()
+	vim.system(cargo_run_release, {}, function(completed)
+		local lines = table.concat(cargo_run_release, " ")
+		log.debug(lines, completed.code)
+	end)
+end
+
+M.cargo_doctest = function()
 	vim.system({ "cargo", "test", "--doc" }, {}, function(completed)
 		local lines = "Exit code: "
 			.. completed.code
