@@ -30,7 +30,7 @@ end
 
 M.entry_maker = function(entry)
 	log.debug(entry)
-	local parsed = vim.json.decode(entry)
+	local parsed = vim.json.decode(vim.trim(entry))
 	if parsed then
 		return {
 			value = parsed,
