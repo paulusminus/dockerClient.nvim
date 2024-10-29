@@ -18,7 +18,7 @@ local options = {
 
 local M = {}
 
-M.select_docker_image = function(opts)
+M.run_selected_image = function(opts)
 	pickers
 		.new(opts, {
 			prompt_title = options.prompt_title,
