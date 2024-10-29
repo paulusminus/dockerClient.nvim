@@ -23,7 +23,7 @@ local M = {}
 
 M.list_fn = function()
 	-- return plenary.job:new(list_images_command):sync()
-	return vim.system(list_images_command)
+	return vim.system(list_images_command):wait()
 end
 
 M.entry_maker = function(entry)
