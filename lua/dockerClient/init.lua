@@ -11,10 +11,41 @@ local cargo_run_release = {
 	"--release",
 }
 
+local cargo_test_doc = {
+	"cargo",
+	"test",
+	"--doc",
+}
+
 local options = {
 	preview_title = "Docker Image Details",
 	prompt_title = "Select image",
 }
+
+local function is_rust_project()
+	return vim.fn.filereadable(vim.fs.joinpath(vim.fn.getcwd(), "Cargo.toml"))
+end
+
+local function log_not_a_rust_project()
+	log.error(vim.fn.getcwd(), "is not a rust project")
+end
+
+local function run(command_line, on_exit)
+	vim.system(command_line, {}, on_exit)
+end
+
+local function handle_cargo_run_release_exit(completed)
+	log.debug(table.concat(cargo_run_release, " "), completed.code)
+end
+
+local function handle_cargo_test_doc_exit(completed)
+	local lines = {
+		"Exit code: " .. completed.code,
+		"Stdout:\n" .. completed.stdout,
+		"Stderr:\n" .. completed.stderr,
+	}
+	log.debug(table.concat(lines, "\n\n"))
+end
 
 local M = {}
 
@@ -34,22 +65,19 @@ M.run_selected_image = function(opts)
 end
 
 M.cargo_run_release = function()
-	vim.system(cargo_run_release, {}, function(completed)
-		local lines = table.concat(cargo_run_release, " ")
-		log.debug(lines, completed.code)
-	end)
+	if is_rust_project() then
+		run(cargo_run_release, handle_cargo_run_release_exit)
+	else
+		log_not_a_rust_project()
+	end
 end
 
-M.cargo_doctest = function()
-	vim.system({ "cargo", "test", "--doc" }, {}, function(completed)
-		local lines = "Exit code: "
-			.. completed.code
-			.. "\n\nStdout: "
-			.. completed.stdout
-			.. "\n\nStderr: "
-			.. completed.stderr
-		log.debug(lines)
-	end)
+M.cargo_test_doc = function()
+	if is_rust_project() then
+		run(cargo_test_doc, handle_cargo_test_doc_exit)
+	else
+		log_not_a_rust_project()
+	end
 end
 
 M.setup = function(opts)

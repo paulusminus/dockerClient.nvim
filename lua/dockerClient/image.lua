@@ -1,6 +1,6 @@
 local actions = require("telescope.actions")
 local actions_state = require("telescope.actions.state")
-local plenary = require("plenary")
+-- local plenary = require("plenary")
 local previewers = require("telescope.previewers")
 local utils = require("telescope.previewers.utils")
 
@@ -22,7 +22,8 @@ end
 local M = {}
 
 M.list_fn = function()
-	return plenary.job:new(list_images_command):sync()
+	-- return plenary.job:new(list_images_command):sync()
+	return vim.system(list_images_command)
 end
 
 M.entry_maker = function(entry)
