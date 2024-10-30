@@ -49,6 +49,10 @@ end
 
 local M = {}
 
+---@brief [[
+--- dockerClient.nvim is a plugin for selecting and running a Docker Image.
+---@brief ]]
+
 -- Select a docker image to be run
 M.run_selected_image = function(opts)
 	pickers
