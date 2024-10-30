@@ -21,9 +21,8 @@ end
 local M = {}
 
 M.list_fn = function()
-	local process = vim.system(list_images_command):wait()
-	local trimmed = vim.trim(process.stdout)
-	return vim.split(trimmed, "\n")
+	local process = vim.systemlist(list_images_command):wait()
+	return process.stdout
 end
 
 M.entry_maker = function(entry)
