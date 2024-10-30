@@ -1,11 +1,8 @@
 local actions = require("telescope.actions")
 local actions_state = require("telescope.actions.state")
-local log = require("plenary.log"):new()
--- local plenary = require("plenary")
 local previewers = require("telescope.previewers")
 local utils = require("telescope.previewers.utils")
 
-log.level = "debug"
 local list_images_command = { "docker", "image", "ls", "--format", "json" }
 
 local function preview_content(entry)
@@ -24,14 +21,12 @@ end
 local M = {}
 
 M.list_fn = function()
-	-- return plenary.job:new(list_images_command):sync()
 	local process = vim.system(list_images_command):wait()
 	local trimmed = vim.trim(process.stdout)
 	return vim.split(trimmed, "\n")
 end
 
 M.entry_maker = function(entry)
-	log.debug(entry)
 	local parsed = vim.json.decode(vim.trim(entry))
 	if parsed then
 		return {
