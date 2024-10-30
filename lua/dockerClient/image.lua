@@ -25,7 +25,9 @@ local M = {}
 
 M.list_fn = function()
 	-- return plenary.job:new(list_images_command):sync()
-	return vim.split(vim.system(list_images_command):wait().stdout, "\n")
+	local process = vim.system(list_images_command):wait()
+	local trimmed = vim.trim(process.stdout)
+	return vim.split(trimmed, "\n")
 end
 
 M.entry_maker = function(entry)
