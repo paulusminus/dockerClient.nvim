@@ -49,6 +49,7 @@ end
 
 local M = {}
 
+-- Select a docker image to be run
 M.run_selected_image = function(opts)
 	pickers
 		.new(opts, {
@@ -64,6 +65,7 @@ M.run_selected_image = function(opts)
 		:find()
 end
 
+-- Run a binary release of the main crate
 M.cargo_run_release = function()
 	if is_rust_project() then
 		run(cargo_run_release, handle_cargo_run_release_exit)
@@ -72,6 +74,7 @@ M.cargo_run_release = function()
 	end
 end
 
+-- Test the documentations samples
 M.cargo_test_doc = function()
 	if is_rust_project() then
 		run(cargo_test_doc, handle_cargo_test_doc_exit)
@@ -80,9 +83,18 @@ M.cargo_test_doc = function()
 	end
 end
 
+-- Configure the plugin
+--
+---@param opts? table
+--- * preview_title:
+---     - defaults to "Docker Image Details"
+--- * prompt_title:
+---     - defaults to "Select Image"
 M.setup = function(opts)
-	for k, v in pairs(opts) do
-		options[k] = v
+	if opts then
+		for k, v in pairs(opts) do
+			options[k] = v
+		end
 	end
 end
 
