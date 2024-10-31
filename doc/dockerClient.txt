@@ -1,7 +1,7 @@
 ==============================================================
-Introduction                               *dockerClient*
+Introduction                               *dockerClient.nvim*
 
-DockerClient is a plugin for running Docker Images.
+dockerClient is a plugin for running Docker Images.
 
 Getting started with dockerClient:
   1. Run `:checkhealth dockerClient` to make sure everything is installed.

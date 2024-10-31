@@ -9,10 +9,11 @@ local function preview_content(entry)
 	local image = entry.value
 	local lines = {
 		"```bash",
-		'ID = "' .. image.ID .. '"',
-		'Repository = "' .. image.Repository .. '"',
-		'Tag = "' .. image.Tag .. '"',
-		'Size = "' .. image.Size .. '"',
+		' Created = "' .. image.CreatedAt .. '"',
+		' ID = "' .. image.ID .. '"',
+		' Repository = "' .. image.Repository .. '"',
+		' Size = "' .. image.Size .. '"',
+		' Tag = "' .. image.Tag .. '"',
 		"```",
 	}
 	return lines
@@ -21,8 +22,7 @@ end
 local M = {}
 
 M.list_fn = function()
-	local process = vim.systemlist(list_images_command):wait()
-	return process.stdout
+	return vim.fn.systemlist(list_images_command)
 end
 
 M.entry_maker = function(entry)

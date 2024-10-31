@@ -3,7 +3,7 @@ local start = vim.health.start or require("health").start
 local ok = health.ok or require("health").ok
 local warn = health.warn or require("health").warn
 local error = health.error or require("health").error
--- local info = health.info or require("health").info
+local info = health.info or require("health").info
 
 local is_win = vim.api.nvim_call_function("has", { "win32" }) == 1
 
@@ -25,15 +25,19 @@ local function binary_name(name)
 end
 
 local check_binary_installed = function(package)
-	local executable = binary_name(package.name)
-	local found = vim.fn.executable(executable) == 1
-	if found then
-		local handle = vim.system({ executable, "--version" }):wait()
-		if handle then
+	local executable = binary_name(package)
+	ok("Executable " .. executable)
+	local is_executable = vim.fn.executable(executable) == 1
+	ok(("%s, %s"):format(executable, is_executable))
+	if is_executable then
+		local version = vim.fn.systemlist({ package, "--version" })
+		ok("Version " .. table.concat(version, ". "))
+		if version then
 			return true
 		else
 			return false
 		end
+		return true
 	else
 		return false
 	end
@@ -62,6 +66,7 @@ M.check = function()
 		end
 	end
 
+	start("Checking for required executables")
 	for _, bin in ipairs(required_bins) do
 		if check_binary_installed(bin.name) then
 			ok(bin.name .. " installed.")
