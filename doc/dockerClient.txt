@@ -1,5 +1,5 @@
 ================================================================================
-INTRODUCTION                                                    *telescope.nvim*
+INTRODUCTION                                                 *dockerClient.nvim*
 
 dockerClient.nvim is a plugin for running a selected Docker image.
 
