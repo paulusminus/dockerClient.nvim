@@ -2,8 +2,7 @@ local config = require("telescope.config").values
 local finders = require("telescope.finders")
 local image = require("dockerClient.image")
 local pickers = require("telescope.pickers")
-local log = require("plenary.log"):new()
-log.level = "debug"
+local log = require("dockerClient.log")
 
 local cargo_run_release = {
 	"cargo",
@@ -27,7 +26,7 @@ local function is_rust_project()
 end
 
 local function log_not_a_rust_project()
-	log.error(vim.fn.getcwd(), "is not a rust project")
+	log.debug(vim.fn.getcwd(), "is not a rust project")
 end
 
 local function run(command_line, on_exit)
@@ -49,7 +48,8 @@ end
 
 local M = {}
 
--- Select a docker image to be run
+--- Select a docker image and run it
+---@param opts table
 M.run_selected_image = function(opts)
 	pickers
 		.new(opts, {
@@ -65,7 +65,7 @@ M.run_selected_image = function(opts)
 		:find()
 end
 
--- Run a binary release of the main crate
+--- Run the release binary of the main crate
 M.cargo_run_release = function()
 	if is_rust_project() then
 		run(cargo_run_release, handle_cargo_run_release_exit)
@@ -74,7 +74,7 @@ M.cargo_run_release = function()
 	end
 end
 
--- Test the documentations samples
+--- Run the documentation tests
 M.cargo_test_doc = function()
 	if is_rust_project() then
 		run(cargo_test_doc, handle_cargo_test_doc_exit)
