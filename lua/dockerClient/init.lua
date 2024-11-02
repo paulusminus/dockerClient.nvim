@@ -46,12 +46,12 @@ local function handle_cargo_test_doc_exit(completed)
 	log.debug(table.concat(lines, "\n\n"))
 end
 
-local M = {}
+local dockerClient = {}
 
 ---@brief [[
 --- dockerClient.nvim is a plugin for running a selected Docker image.
 ---
---- Getting started with telescope:
+--- Getting started with dockerClient:
 ---   1. Run `:checkhealth dockerClient` to make sure everything is installed.
 ---   2. Evaluate it is working with
 ---      `:DockerRunSelectedImage` or
@@ -76,7 +76,7 @@ local M = {}
 
 --- Select a docker image and run it
 ---@param opts table
-M.run_selected_image = function(opts)
+dockerClient.run_selected_image = function(opts)
 	pickers
 		.new(opts, {
 			prompt_title = options.prompt_title,
@@ -92,7 +92,7 @@ M.run_selected_image = function(opts)
 end
 
 --- Run the release binary of the main crate
-M.cargo_run_release = function()
+dockerClient.cargo_run_release = function()
 	if is_rust_project() then
 		run(cargo_run_release, handle_cargo_run_release_exit)
 	else
@@ -101,7 +101,7 @@ M.cargo_run_release = function()
 end
 
 --- Run the documentation tests
-M.cargo_test_doc = function()
+dockerClient.cargo_test_doc = function()
 	if is_rust_project() then
 		run(cargo_test_doc, handle_cargo_test_doc_exit)
 	else
@@ -116,7 +116,7 @@ end
 ---     - defaults to "Docker Image Details"
 --- * prompt_title:
 ---     - defaults to "Select Image"
-M.setup = function(opts)
+dockerClient.setup = function(opts)
 	if opts then
 		for k, v in pairs(opts) do
 			options[k] = v
@@ -124,4 +124,4 @@ M.setup = function(opts)
 	end
 end
 
-return M
+return dockerClient

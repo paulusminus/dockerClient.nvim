@@ -19,13 +19,13 @@ local function preview_content(entry)
 	return lines
 end
 
-local M = {}
+local image = {}
 
-M.list_fn = function()
+image.list_fn = function()
 	return vim.fn.systemlist(list_images_command)
 end
 
-M.entry_maker = function(entry)
+image.entry_maker = function(entry)
 	local parsed = vim.json.decode(vim.trim(entry))
 	if parsed then
 		return {
@@ -36,7 +36,7 @@ M.entry_maker = function(entry)
 	end
 end
 
-M.previewer = function(preview_title)
+image.previewer = function(preview_title)
 	return previewers.new_buffer_previewer({
 		title = preview_title,
 		define_preview = function(self, entry)
@@ -46,7 +46,7 @@ M.previewer = function(preview_title)
 	})
 end
 
-M.action = function(prompt_bufnr)
+image.action = function(prompt_bufnr)
 	actions.select_default:replace(function()
 		actions.close(prompt_bufnr)
 		local selection = actions_state.get_selected_entry()
@@ -64,4 +64,4 @@ M.action = function(prompt_bufnr)
 	return true
 end
 
-return M
+return image
