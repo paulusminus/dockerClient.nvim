@@ -71,7 +71,7 @@ local M = {}
 --- </pre>
 ---@brief ]]
 
----@tag telescope.nvim
+---@tag dockerClient.nvim
 ---@config { ["name"] = "INTRODUCTION" }
 
 --- Select a docker image and run it
