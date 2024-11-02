@@ -3,6 +3,6 @@ set rtp+=../plenary.nvim/
 set rtp+=../tree-sitter-lua/
 
 runtime! plugin/plenary.vim
-runtime! plugin/telescope.lua
+runtime! plugin/dockerClient.lua
 
 let g:telescope_test_delay = 100
