@@ -71,6 +71,9 @@ local M = {}
 --- </pre>
 ---@brief ]]
 
+---@tag telescope.nvim
+---@config { ["name"] = "INTRODUCTION" }
+
 --- Select a docker image and run it
 ---@param opts table
 M.run_selected_image = function(opts)
