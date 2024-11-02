@@ -1,0 +1,50 @@
+================================================================================
+dockerClient.nvim is a plugin for running a selected Docker image.
+
+Getting started with telescope:
+  1. Run `:checkhealth dockerClient` to make sure everything is installed.
+  2. Evaluate it is working with `:DockerRunSelectedImage` or `:lua
+     require("dockerClient").run_selected_image()`
+  3. Put a `require("dockerClient").setup()` call somewhere in your neovim
+     config.
+  4. Read |dockerClient.setup| to check what config keys are available and what
+     you can put inside the setup call
+  6. Profit
+
+To find out more:
+https://github.com/paulusminus/dockerClient.nvim
+
+  :h dockerClient.cargo_run_release
+  :h dockerClient.cargo_test_doc
+  :h dockerClient.run_selected_image
+  :h dockerClient.setup
+
+M.run_selected_image({opts})                          *M.run_selected_image()*
+    Select a docker image and run it
+
+
+    Parameters: ~
+        {opts} (table)
+
+
+M.cargo_run_release()                                  *M.cargo_run_release()*
+    Run the release binary of the main crate
+
+
+
+M.cargo_test_doc()                                        *M.cargo_test_doc()*
+    Run the documentation tests
+
+
+
+M.setup()                                                          *M.setup()*
+    * preview_title:
+        - defaults to "Docker Image Details" * prompt_title:
+        - defaults to "Select Image"
+
+
+
+
+================================================================================
+
+ vim:tw=78:ts=8:ft=help:norl:
