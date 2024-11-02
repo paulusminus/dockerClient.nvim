@@ -49,8 +49,7 @@ end
 local M = {}
 
 ---@brief [[
---- dockerClient.nvim is a plugin for running a selected Docker image. It helps you search,
---- filter, find and pick things in Lua.
+--- dockerClient.nvim is a plugin for running a selected Docker image.
 ---
 --- Getting started with telescope:
 ---   1. Run `:checkhealth dockerClient` to make sure everything is installed.
@@ -65,10 +64,10 @@ local M = {}
 --- To find out more:
 --- https://github.com/paulusminus/dockerClient.nvim
 ---
----   :h dockerClient.setup
----   :h dockerClient.run_selected_image
 ---   :h dockerClient.cargo_run_release
 ---   :h dockerClient.cargo_test_doc
+---   :h dockerClient.run_selected_image
+---   :h dockerClient.setup
 --- </pre>
 ---@brief ]]
 
