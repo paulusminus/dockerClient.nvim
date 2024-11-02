@@ -21,6 +21,14 @@ https://github.com/paulusminus/dockerClient.nvim
   :h dockerClient.run_selected_image
   :h dockerClient.setup
 
+options                                                              *options*
+
+
+    Fields: ~
+        {preview_title} (string)
+        {prompt_title}  (string)
+
+
 dockerClient.run_selected_image({opts})    *dockerClient.run_selected_image()*
     Select a docker image and run it
 
@@ -36,13 +44,6 @@ dockerClient.cargo_run_release()            *dockerClient.cargo_run_release()*
 
 dockerClient.cargo_test_doc()                  *dockerClient.cargo_test_doc()*
     Run the documentation tests
-
-
-
-dockerClient.setup()                                    *dockerClient.setup()*
-    * preview_title:
-        - defaults to "Docker Image Details" * prompt_title:
-        - defaults to "Select Image"
 
 
 
