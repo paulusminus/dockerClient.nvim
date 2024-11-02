@@ -109,13 +109,13 @@ dockerClient.cargo_test_doc = function()
 	end
 end
 
+---@class options
+---@field preview_title string
+---@field prompt_title string
+
 -- Configure the plugin
 --
----@param opts? table
---- * preview_title:
----     - defaults to "Docker Image Details"
---- * prompt_title:
----     - defaults to "Select Image"
+---@param opts? options: options to pass to the setup function
 dockerClient.setup = function(opts)
 	if opts then
 		for k, v in pairs(opts) do
