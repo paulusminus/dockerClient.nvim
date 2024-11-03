@@ -21,42 +21,13 @@ https://github.com/paulusminus/dockerClient.nvim
   :h dockerClient.run_selected_image
   :h dockerClient.setup
 
-.new({}, {
-			prompt_title = options.prompt_title,
-			finder = finders.new_dynamic({
-				fn = image.list_fn,
-				entry_maker = image.entry_maker,
-			}),
-			sorter = config.generic_sorter(opts),
-			previewer = image.previewer(options.preview_title),
-			attach_mappings = image.action,
-		})
-		:find()
-end
-
--- Run the release binary of the main crate
-dockerClient.cargo_run_release({opts}) *.new({}, {
-			prompt_title = options.prompt_title,
-			finder = finders.new_dynamic({
-				fn = image.list_fn,
-				entry_maker = image.entry_maker,
-			}),
-			sorter = config.generic_sorter(opts),
-			previewer = image.previewer(options.preview_title),
-			attach_mappings = image.action,
-		})
-		:find()
-end
-
--- Run the release binary of the main crate
-dockerClient.cargo_run_release()*
+dockerClient.run_selected_image({opts})    *dockerClient.run_selected_image()*
     Select a docker image and run it
 
 
 
     Parameters: ~
-        {opts} (table?
-dockerClient.run_selected_image)
+        {opts} (table)  Options for configuring telescope picker
 
 
 dockerClient.setup({opts})                              *dockerClient.setup()*
