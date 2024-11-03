@@ -28,19 +28,6 @@ dockerClient.run_selected_image({opts})    *dockerClient.run_selected_image()*
         {opts} (table)  Options for configuring telescope picker
 
 
-dockerClient.setup({opts})                              *dockerClient.setup()*
-    Setup function to be run by user. Configures the defaults of dockerClient.
-
-
-
-    Parameters: ~
-        {opts} (table)  options to pass to setup
-
-    Fields: ~
-        {preview_title} (string)  title of the preview window
-        {prompt_title}  (string)  title of the prompt
-
-
 
 ================================================================================
 
