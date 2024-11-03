@@ -34,7 +34,7 @@ https://github.com/paulusminus/dockerClient.nvim
 		:find()
 end
 
---- Run the release binary of the main crate
+-- Run the release binary of the main crate
 dockerClient.cargo_run_release({opts}) *.new({}, {
 			prompt_title = options.prompt_title,
 			finder = finders.new_dynamic({
@@ -48,7 +48,7 @@ dockerClient.cargo_run_release({opts}) *.new({}, {
 		:find()
 end
 
---- Run the release binary of the main crate
+-- Run the release binary of the main crate
 dockerClient.cargo_run_release()*
     Select a docker image and run it
 
@@ -57,11 +57,6 @@ dockerClient.cargo_run_release()*
     Parameters: ~
         {opts} (table?
 dockerClient.run_selected_image)
-
-
-dockerClient.cargo_test_doc()                  *dockerClient.cargo_test_doc()*
-    Run the documentation tests
-
 
 
 dockerClient.setup({opts})                              *dockerClient.setup()*
