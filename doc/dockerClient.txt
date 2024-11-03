@@ -53,6 +53,7 @@ dockerClient.cargo_run_release()*
     Select a docker image and run it
 
 
+
     Parameters: ~
         {opts} (table?
 dockerClient.run_selected_image)
@@ -69,7 +70,7 @@ dockerClient.setup({opts})                              *dockerClient.setup()*
 
 
     Parameters: ~
-        {opts} (options)  option to pass to setup
+        {opts} (table)  options to pass to setup
 
     Fields: ~
         {preview_title} (string)  title of the preview window
