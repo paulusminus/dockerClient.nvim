@@ -21,30 +21,59 @@ https://github.com/paulusminus/dockerClient.nvim
   :h dockerClient.run_selected_image
   :h dockerClient.setup
 
-options                                                              *options*
+.new({}, {
+			prompt_title = options.prompt_title,
+			finder = finders.new_dynamic({
+				fn = image.list_fn,
+				entry_maker = image.entry_maker,
+			}),
+			sorter = config.generic_sorter(opts),
+			previewer = image.previewer(options.preview_title),
+			attach_mappings = image.action,
+		})
+		:find()
+end
 
+--- Run the release binary of the main crate
+dockerClient.cargo_run_release({opts}) *.new({}, {
+			prompt_title = options.prompt_title,
+			finder = finders.new_dynamic({
+				fn = image.list_fn,
+				entry_maker = image.entry_maker,
+			}),
+			sorter = config.generic_sorter(opts),
+			previewer = image.previewer(options.preview_title),
+			attach_mappings = image.action,
+		})
+		:find()
+end
 
-    Fields: ~
-        {preview_title} (string)
-        {prompt_title}  (string)
-
-
-dockerClient.run_selected_image({opts})    *dockerClient.run_selected_image()*
+--- Run the release binary of the main crate
+dockerClient.cargo_run_release()*
     Select a docker image and run it
 
 
     Parameters: ~
-        {opts} (table)
-
-
-dockerClient.cargo_run_release()            *dockerClient.cargo_run_release()*
-    Run the release binary of the main crate
-
+        {opts} (table?
+dockerClient.run_selected_image)
 
 
 dockerClient.cargo_test_doc()                  *dockerClient.cargo_test_doc()*
     Run the documentation tests
 
+
+
+dockerClient.setup({opts})                              *dockerClient.setup()*
+    Setup function to be run by user. Configures the defaults of dockerClient.
+
+
+
+    Parameters: ~
+        {opts} (options)  option to pass to setup
+
+    Fields: ~
+        {preview_title} (string)  title of the preview window
+        {prompt_title}  (string)  title of the prompt
 
 
 
