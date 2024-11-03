@@ -111,9 +111,7 @@ end
 --- Setup function to be run by user. Configures the defaults
 --- of dockerClient.
 ---
----@param opts table: options to pass to setup
----@field preview_title string: title of the preview window
----@field prompt_title string: title of the prompt
+---@param opts? table<string, string>: options to pass to setup
 dockerClient.setup = function(opts)
 	if opts then
 		for k, v in pairs(opts) do
