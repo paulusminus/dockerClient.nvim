@@ -75,6 +75,7 @@ local dockerClient = {}
 ---@config { ["name"] = "INTRODUCTION" }
 
 --- Select a docker image and run it
+---
 ---@param opts table?
 dockerClient.run_selected_image = function(opts)
 	pickers
@@ -112,7 +113,7 @@ end
 --- Setup function to be run by user. Configures the defaults
 --- of dockerClient.
 ---
----@param opts options: option to pass to setup
+---@param opts table: options to pass to setup
 ---@field preview_title string: title of the preview window
 ---@field prompt_title string: title of the prompt
 dockerClient.setup = function(opts)
