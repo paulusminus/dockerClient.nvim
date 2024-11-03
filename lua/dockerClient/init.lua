@@ -109,12 +109,9 @@ dockerClient.cargo_test_doc = function()
 	end
 end
 
----@class options
----@field preview_title string
----@field prompt_title string
-
--- Configure the plugin
---
+--- Setup function to be run by user. Configures the defaults
+--- of dockerClient.
+---
 ---@param opts options: option to pass to setup
 ---@field preview_title string: title of the preview window
 ---@field prompt_title string: title of the prompt
