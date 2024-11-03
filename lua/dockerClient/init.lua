@@ -1,4 +1,4 @@
-local config = require("ltelescope.config").values
+local config = require("telescope.config").values
 local finders = require("telescope.finders")
 local image = require("dockerClient.image")
 local pickers = require("telescope.pickers")
