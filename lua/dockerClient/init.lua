@@ -110,7 +110,6 @@ end
 
 --- Setup function to be run by user. Configures the defaults
 --- of dockerClient.
----
 ---@param opts? table options to pass to setup
 dockerClient.setup = function(opts)
 	if opts then
