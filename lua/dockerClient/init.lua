@@ -76,7 +76,7 @@ local dockerClient = {}
 
 --- Select a docker image and run it
 ---
----@param opts table?
+---@param opts table: Options for configuring telescope picker
 dockerClient.run_selected_image = function(opts)
 	pickers
 		.new({}, {
