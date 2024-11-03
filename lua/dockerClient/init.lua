@@ -92,7 +92,7 @@ dockerClient.run_selected_image = function(opts)
 		:find()
 end
 
---- Run the release binary of the main crate
+-- Run the release binary of the main crate
 dockerClient.cargo_run_release = function()
 	if is_rust_project() then
 		run(cargo_run_release, handle_cargo_run_release_exit)
@@ -101,7 +101,7 @@ dockerClient.cargo_run_release = function()
 	end
 end
 
---- Run the documentation tests
+-- Run the documentation tests
 dockerClient.cargo_test_doc = function()
 	if is_rust_project() then
 		run(cargo_test_doc, handle_cargo_test_doc_exit)
