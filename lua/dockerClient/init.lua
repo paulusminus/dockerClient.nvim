@@ -1,4 +1,4 @@
-local config = require("telescope.config").values
+local config = require("ltelescope.config").values
 local finders = require("telescope.finders")
 local image = require("dockerClient.image")
 local pickers = require("telescope.pickers")
@@ -75,10 +75,10 @@ local dockerClient = {}
 ---@config { ["name"] = "INTRODUCTION" }
 
 --- Select a docker image and run it
----@param opts table
+---@param opts table?
 dockerClient.run_selected_image = function(opts)
 	pickers
-		.new(opts, {
+		.new({}, {
 			prompt_title = options.prompt_title,
 			finder = finders.new_dynamic({
 				fn = image.list_fn,
@@ -115,7 +115,9 @@ end
 
 -- Configure the plugin
 --
----@param opts? options: options to pass to the setup function
+---@param opts options: option to pass to setup
+---@field preview_title string: title of the preview window
+---@field prompt_title string: title of the prompt
 dockerClient.setup = function(opts)
 	if opts then
 		for k, v in pairs(opts) do
