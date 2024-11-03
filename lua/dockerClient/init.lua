@@ -64,8 +64,6 @@ local dockerClient = {}
 --- To find out more:
 --- https://github.com/paulusminus/dockerClient.nvim
 ---
----   :h dockerClient.cargo_run_release
----   :h dockerClient.cargo_test_doc
 ---   :h dockerClient.run_selected_image
 ---   :h dockerClient.setup
 --- </pre>
