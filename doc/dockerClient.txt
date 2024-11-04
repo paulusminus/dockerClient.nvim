@@ -19,6 +19,24 @@ https://github.com/paulusminus/dockerClient.nvim
   :h dockerClient.run_selected_image
   :h dockerClient.setup
 
+dockerClient.run_selected_image({opts})    *dockerClient.run_selected_image()*
+    Select a docker image and run it
+
+
+
+    Parameters: ~
+        {opts} (table)  Options for configuring telescope picker
+
+
+dockerClient.setup({opts})                              *dockerClient.setup()*
+    Setup function to be run by user. Configures the defaults of dockerClient.
+
+
+
+    Parameters: ~
+        {opts} (table)  options to pass to setup
+
+
 
 ================================================================================
 
