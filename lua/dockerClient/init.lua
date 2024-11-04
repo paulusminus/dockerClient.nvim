@@ -74,10 +74,11 @@ local dockerClient = {}
 
 --- Select a docker image and run it
 ---
----@param opts? table: Options for configuring telescope picker
+---@param opts table: Options for configuring telescope picker
 dockerClient.run_selected_image = function(opts)
+	opts = opts or {}
 	pickers
-		.new({}, {
+		.new(opts, {
 			prompt_title = options.prompt_title,
 			finder = finders.new_dynamic({
 				fn = image.list_fn,
@@ -110,8 +111,9 @@ end
 
 --- Setup function to be run by user. Configures the defaults of dockerClient.
 ---
----@param opts? table: options to pass to setup
+---@param opts table: options to pass to setup
 dockerClient.setup = function(opts)
+	opts = opts or {}
 	if opts then
 		for k, v in pairs(opts) do
 			options[k] = v
