@@ -4,18 +4,6 @@ local image = require("dockerClient.image")
 local pickers = require("telescope.pickers")
 local log = require("dockerClient.log")
 
-local cargo_run_release = {
-	"cargo",
-	"run",
-	"--release",
-}
-
-local cargo_test_doc = {
-	"cargo",
-	"test",
-	"--doc",
-}
-
 local options = {
 	preview_title = "Docker Image Details",
 	prompt_title = "Select image",
@@ -31,19 +19,6 @@ end
 
 local function run(command_line, on_exit)
 	vim.system(command_line, {}, on_exit)
-end
-
-local function handle_cargo_run_release_exit(completed)
-	log.debug(table.concat(cargo_run_release, " "), completed.code)
-end
-
-local function handle_cargo_test_doc_exit(completed)
-	local lines = {
-		"Exit code: " .. completed.code,
-		"Stdout:\n" .. completed.stdout,
-		"Stderr:\n" .. completed.stderr,
-	}
-	log.debug(table.concat(lines, "\n\n"))
 end
 
 local dockerClient = {}
@@ -89,24 +64,6 @@ dockerClient.run_selected_image = function(opts)
 			attach_mappings = image.action,
 		})
 		:find()
-end
-
--- Run the release binary of the main crate
-dockerClient.cargo_run_release = function()
-	if is_rust_project() then
-		run(cargo_run_release, handle_cargo_run_release_exit)
-	else
-		log_not_a_rust_project()
-	end
-end
-
--- Run the documentation tests
-dockerClient.cargo_test_doc = function()
-	if is_rust_project() then
-		run(cargo_test_doc, handle_cargo_test_doc_exit)
-	else
-		log_not_a_rust_project()
-	end
 end
 
 --- Setup function to be run by user. Configures the defaults of dockerClient.

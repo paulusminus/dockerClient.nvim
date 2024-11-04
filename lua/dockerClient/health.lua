@@ -11,7 +11,6 @@ local required_plugins = {
 }
 
 local required_bins = {
-	{ name = "cargo", optional = false },
 	{ name = "docker", optional = false },
 }
 
