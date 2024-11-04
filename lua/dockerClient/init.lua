@@ -108,8 +108,7 @@ dockerClient.cargo_test_doc = function()
 	end
 end
 
---- Setup function to be run by user. Configures the defaults
---- of dockerClient.
+---@comment Setup function to be run by user. Configures the defaults of dockerClient.
 ---@param opts? table options to pass to setup
 dockerClient.setup = function(opts)
 	if opts then
